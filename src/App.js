@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "bootstrap/dist/js/bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Create from "./pages/Create";
+import Notes from "./pages/Notes";
+import Layout from "./component/Layout";
+import { purple } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+const themeOne = createTheme({
+  palette: {
+    secondary: purple
+  },
+  typography: {
+    fontFamily: 'Quicksand'
+  }
+})
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={themeOne}>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Notes />} />
+            <Route path="/create" element={<Create />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
 
