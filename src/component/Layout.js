@@ -1,6 +1,15 @@
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, AppBar, Toolbar, Avatar } from "@mui/material";
 import { AddCircleOutlineOutlined, SubjectOutlined } from '@mui/icons-material';
 import { NavLink } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import farghaly from '../images/farghaly.jpg';
+const useStyles = makeStyles(theme => {
+    return {
+        toolbarHeight: {
+            height: `${theme.mixins.toolbar.minHeight}px !important`
+        }
+    }
+})
 const Layout = ({ children }) => {
     const menuItems = [
         {
@@ -14,6 +23,7 @@ const Layout = ({ children }) => {
             path: '/create'
         }
     ];
+    const classes = useStyles();
     const drawerWidth = 240;
     return (
 
@@ -29,10 +39,10 @@ const Layout = ({ children }) => {
                 }}
             >
                 <Typography variant="h5" sx={{
-                    marginTop: "7px",
-                    marginBottom: "7px",
-                    marginLeft: "15px"
-                }}>
+                    padding: "13px"
+                }}
+                    className={classes.toolbarHeight}
+                >
                     Ninja Notes
                 </Typography>
                 <List>
@@ -52,7 +62,26 @@ const Layout = ({ children }) => {
                     }
                 </List>
             </Drawer>
-            {children}
+            <div className='flex-grow-1 bg-light mx-0 d-flex flex-column'>
+                <AppBar
+                    className="position-static mb-3 bg-white"
+                    elevation={0}
+                >
+                    <Toolbar className="d-flex justify-content-between">
+                        <Typography color="textSecondary">
+                            Today is  {new Date().toDateString()}
+                        </Typography>
+                        <div className="d-flex gap-2 align-items-center">
+                            <Typography color="textSecondary">
+                                Mario
+                            </Typography>
+                            <Avatar src={farghaly} />
+                        </div>
+
+                    </Toolbar>
+                </AppBar>
+                {children}
+            </div>
         </div>
     );
 }

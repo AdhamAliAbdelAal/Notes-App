@@ -25,8 +25,7 @@ const Create = () => {
     const [detailsError, setDetailsError] = useState(false);
     const [category, setCategory] = useState("money");
     return (
-        <Container className='flex-grow-1'>
-
+        <Container>
             <Typography
                 className={classes.my}
                 variant='h5'
@@ -83,7 +82,7 @@ const Create = () => {
                     >
                         <FormControlLabel value="money" control={<Radio color='secondary' />} label="Money" />
                         <FormControlLabel value="todos" control={<Radio color='secondary' />} label="Todos" />
-                        <FormControlLabel value="reminder" control={<Radio color='secondary' />} label="Reminder" />
+                        <FormControlLabel value="reminders" control={<Radio color='secondary' />} label="Reminder" />
                         <FormControlLabel value="work" control={<Radio color='secondary' />} label="Work" />
                     </RadioGroup>
                 </FormControl>
